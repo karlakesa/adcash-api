@@ -11,6 +11,7 @@ class ProductsResource(Resource):
 
     @staticmethod
     def get_products():
+
         return jsonify(list(ProductSchema().dump(x) for x in Product.query.all())), 200
 
     @staticmethod
@@ -48,7 +49,6 @@ class ProductsResource(Resource):
 
         product.product_name = data['product_name']
         product.category_id = data['category_id']
-
         db.session.add(product)
         db.session.commit()
 

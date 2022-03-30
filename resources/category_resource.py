@@ -11,6 +11,7 @@ class CategoriesResource(Resource):
 
     @staticmethod
     def get_categories():
+
         return jsonify(list(CategorySchema().dump(x) for x in Category.query.all())), 200
 
     @staticmethod
@@ -25,6 +26,7 @@ class CategoriesResource(Resource):
         new_category = Category(data['category_name'])
         db.session.add(new_category)
         db.session.commit()
+
         return jsonify(CategorySchema().dump(new_category)), 200
 
     @staticmethod
@@ -42,6 +44,7 @@ class CategoriesResource(Resource):
         category.category_name = data['category_name']
         db.session.add(category)
         db.session.commit()
+
         return jsonify(CategorySchema().dump(category)), 200
 
     @staticmethod
@@ -53,6 +56,7 @@ class CategoriesResource(Resource):
 
         db.session.delete(category)
         db.session.commit()
+
         return jsonify(CategorySchema().dump(category)), 200
 
     @staticmethod
